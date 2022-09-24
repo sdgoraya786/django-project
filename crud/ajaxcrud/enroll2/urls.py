@@ -1,0 +1,11 @@
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.home, name='home'),
+    path('load_data/', views.load_data, name='load_data'),
+    path('save/', views.save_data, name='save'),
+    path('delete/', views.delete_data, name='delete'),
+    path('edit/', views.edit_data, name='edit'),
+    path('live_search/', views.live_search_data, name='live_search'),
+]

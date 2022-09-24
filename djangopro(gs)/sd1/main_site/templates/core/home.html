@@ -1,0 +1,10 @@
+{% extends "core/base.html" %}
+{% block title %}
+    Home | SD
+{% endblock title %}
+
+{% block content %}
+    <h4>This is Home Page!</h4>
+   {% include "core/allcourses.html" with l='Laravel' only %}
+{% endblock content %}
+    

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'core/css/all.min.css' %}">
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" href="{% static 'core/css/bootstrap.css' %}">
+    <!-- google font -->
+    <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+    <!--dynamic css -->
+   {% block css %}
+    <link rel="stylesheet" href="{% static 'core/css/coustom.css' %}">
+   {% endblock css %}
+   <title>{% block title %}{% endblock title %}</title>
+</head>
+<body>
+    
+    <div class="container-fluid bg-dark">
+        <div class="row">
+            <div class="col-sm-3">
+               {% include "core/sidebar.html" %}
+            </div>
+            <div class="col-sm-9">
+               {% block content %}
+                   
+               {% endblock content %}
+            </div>
+        </div>
+    </div>
+
+    
+    <!-- Jquery -->
+    <script src="{% static 'core/js/jquery.js' %}"></script>
+    <!-- Popper -->
+    <script src="{% static 'core/js/popper.js' %}"></script>
+    <!-- Font Awesome -->
+    <script src="{% static 'core/js/all.min.js' %}"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'core/js/bootstrap.js' %}"></script>
+</body>
+</html>

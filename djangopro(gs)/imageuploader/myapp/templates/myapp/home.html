@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'myapp/css/bootstrap.min.css' %}">
+    <title>Image Uploader Website Project</title>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="py-5 text-center bg-secondary text-white">
+            <h2 class="mb-3">Upload Images</h2>
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form}}
+                <input type="submit" class="btn btn-danger btn-sm" value="Upload">
+             </form>
+        </div>
+
+        <div class="row">
+            {% for img in img %}
+                <div class="col-sm-4">
+                    <div class="card m-2">
+                        <img class="card-img-top" src="{{img.photo.url}}" alt="image" height="300px">
+                        <div class="card-footer">
+                            <small class="text-muted">{{img.date}}</small>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+<script src="{% static 'myapp/js/jquery.js' %}"></script>
+<script src="{% static 'myapp/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

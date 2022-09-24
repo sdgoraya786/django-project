@@ -1,0 +1,12 @@
+{% for catProduct in catProducts %}
+    <div class="col-sm-4 text-center mb-4">
+        <a href="{% url 'product-detail' catProduct %}" class="btn">
+            <div class="item">
+            <img src="{{catProduct.product_image.url}}" class="img-fluid" alt="....">
+            <div class="fw-bold">{{catProduct.title}}</div>
+            <div class="fw-bold">Rs. {{catProduct.discounted_price}}</div>
+            <small class="fw-light text-decoration-line-through">{{catProduct.selling_price}}</small>
+            </div>
+        </a>
+    </div>
+{% endfor %}

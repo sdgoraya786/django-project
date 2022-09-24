@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session Framework</title>
+</head>
+<body>
+    <h3>Get Session</h3>
+
+    <p><strong>Session Methods -</strong> keys(), items(), setDefault(), clear(), flush()</p>
+    <!-- <h5>{{fname}} {{lname}}</h5> -->
+    <h5>{{name}}</h5>
+    <hr>
+    <h6>keys()</h6>
+    <!-- {% for key in request.session.keys %} 
+        {{key}}
+    {% endfor %}-->
+    {% for key in keys %}
+        {{key}}
+    {% endfor %}
+    <hr>
+    <h6>items()</h6>
+    <!-- {% for item in items %}
+    {{item}} <br>
+    {% endfor %} -->
+    {% for key, value in items %}
+    <!-- {{key}} {{value}} -->
+    {{value}}
+    {% endfor %}
+    <hr>
+    <h6>setDefault()</h6>
+    {{age}}
+
+    <hr><hr><hr>
+    <p><strong>Some more Methods -</strong> get_session_cookie_age(), get_expiry_age(), get_expiry_date(), get_expire_at_browser_close(), set_expiry(), clear_expired()</p>
+    {{request.session.get_session_cookie_age}} <br>
+    {{request.session.get_expiry_age}} <br>
+    {{request.session.get_expiry_date}} <br>
+    {{request.session.get_expire_at_browser_close}} <br>
+</body>
+</html>

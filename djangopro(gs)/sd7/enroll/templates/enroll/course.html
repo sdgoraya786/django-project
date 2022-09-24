@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% load cache %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cache | per site Cache | Per View Caching | Template Fragment Caching</title>
+</head>
+<body>
+    <h2>Course 1</h2>
+    <h2>Course 2</h2>
+
+    <!-- Template Fragment Caching 88 -->
+    {% cache 20 course %}
+        <h2>Course 3</h2>
+        <h2>Course 4</h2>
+    {% endcache course %}
+    
+</body>
+</html>

@@ -1,0 +1,70 @@
+{% extends "enroll/base.html" %}
+
+{% block title %}
+
+    {% if user.is_superuser %}
+        admin | Select user to change | admin site
+    {% else %}
+        User Dashboard
+    {% endif %}
+    
+{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <!-- for messages -->
+       {% include "enroll/messages.html" %}
+       <h3>Dashboard</h3>
+       <h6>Welcome {{user.username}}</h6>
+
+       <!-- this is only for admin -->
+        {% if user.is_superuser %}
+            <!-- group model se form render krwa sakty hen -->
+            <a href="">Groups</a><br>
+            <a href="">Users</a><br>
+        {% endif %}
+        {% if users %}
+            {% for user in users %}
+                {{user.id}}
+                <a href="{% url 'userdetail' user.id %}">{{user.username}}</a>
+                {{user.email}}
+                {{user.first_name}}
+                {{user.last_name}}
+                {{user.is_staff}}<br>
+            {% endfor %}
+            <br>
+        {% endif %}
+        <!-- / this is only for admin -->
+
+        <!-- onyl for normal users -->
+       {% if not user.is_superuser %}
+
+        
+        <!--<input type="button" value="View">
+        <input type="button" value="change"> -->
+
+    <!--***************************************************** 
+            Permission and Authorization 79  
+    ******************************************************* -->
+        {% if perms.enroll.delete_blog %}
+            <!--* Render Code based on User Permission * -->
+            <input type="button" value="Delete"><br>
+        {% else %}
+            <p>No Delete Permission</p>
+        {% endif %}
+
+        {% if perms.enroll.add_blog %}
+            <!--* Render Code based on User Permission * -->
+            <input type="button" value="Add"><br>
+        {% else %}
+            <p>No Add Permission</p>
+        {% endif %}
+
+        <a href="{% url 'editprofile' %}">Edit Profile</a>&nbsp;
+
+       {% endif %}
+
+        <a href="{% url 'logout' %}">Logout</a>&nbsp;
+        <a href="{% url 'changepassword' %}">Change Password</a>&nbsp;
+    </div>
+{% endblock content %}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table, th, td {
+            border: 1px solid rgb(81, 98, 114);
+            border-collapse: collapse;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <h3>All User Data</h3>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>Username</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for u in data1 %}
+                <tr>
+                    <td scope="row">{{u.id}}</td>
+                    <td>{{u.first_name}} {{u.last_name}}</td>
+                    <td>{{u.username}}</td>
+                    <td>{{u.email}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+    <table>
+        <h3>User Filtered by Page Category</h3>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>Username</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for u in data2 %}
+                <tr>
+                    <td scope="row">{{u.id}}</td>
+                    <td>{{u.first_name}} {{u.last_name}}</td>
+                    <td>{{u.username}}</td>
+                    <td>{{u.email}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <table>
+        <h3>User Filtered by Page Post Publish Date</h3>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>Username</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for u in data3 %}
+                <tr>
+                    <td scope="row">{{u.id}}</td>
+                    <td>{{u.first_name}} {{u.last_name}}</td>
+                    <td>{{u.username}}</td>
+                    <td>{{u.email}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <table>
+        <h3>User Filtered by Song Duration</h3>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>Username</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for u in data4 %}
+                <tr>
+                    <td scope="row">{{u.id}}</td>
+                    <td>{{u.first_name}} {{u.last_name}}</td>
+                    <td>{{u.username}}</td>
+                    <td>{{u.email}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+</body>
+</html>

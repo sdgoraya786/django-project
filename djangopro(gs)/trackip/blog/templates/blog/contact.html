@@ -1,0 +1,36 @@
+{% extends "blog/base.html" %}
+
+{% block title %}
+    Contact Us | SD Goraya
+{% endblock title %}
+
+{% block content %}
+    <div class="col-md-8 offset-md-2">
+        <h3 class="text-secondary border border-secondary text-center py-3 mt-5 mb-2">CONTACT US</h3>
+        <form action="">
+            <div class="row mb-3">
+                <div class="col-md-6 mt-3">
+                    <label for="name" class="form-label">Name:</label>
+                    <input type="text" name="name" id="name" class="form-control" autofocus aria-describedby="helpId">
+                    <!-- <small id="helpId" class="text-muted">Help text</small> -->
+                </div>
+                <div class="col-md-6 mt-3">
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="email" name="email" id="email" class="form-control">
+                </div>
+                <div class="col-12 mt-3">
+                    <label for="address" class="form-label">Address:</label>
+                    <input type="Text" name="address" id="address" class="form-control">
+                </div>
+                <div class="col-12 mt-3">
+                    <label for="message" class="form-label">Message:</label>
+                    <textarea name="message" id="message" class="form-control" cols="30" rows="4"></textarea>
+                </div>
+            </div>
+            <input type="submit" class="btn btn-secondary" value="Send">
+            <!-- <button type="submit" class="btn btn-primary d-md-none w-100">Send</button> -->
+        </form>
+    </div>
+
+    
+{% endblock content %}

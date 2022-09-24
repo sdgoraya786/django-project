@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'blog/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/main.css' %}">
+    <title>{% block title %}{% endblock title %}</title>
+</head>
+<body>
+    <!-- navbar -->
+    <div class="container-fluid bg-dark">
+      {% block navbar %}
+        {% include "blog/navbar.html" %}
+      {% endblock navbar %}
+    </div>
+    <!--/end navbar -->
+
+    <div class="container">
+        <!-- message row -->
+        {% if messages %}
+            <div class="row">
+                <div class="col-sm-12">
+                {% block msg %}  
+                {% endblock msg %}
+                </div>
+            </div>
+        {% endif %}
+        <!--/ end message row -->
+
+        <!-- Sidebar and Main Content -->
+        <div class="row">
+            <!-- <h3 class="text-secondary border border-secondary text-center py-3 mt-5 mb-4">DASHBOARD</h3> -->
+            <!-- Sidebar -->
+           {% block sidebar %} 
+           {% endblock sidebar %}
+           <!-- Main Content -->
+          {% block content %} 
+          {% endblock content %}
+        </div>
+        <!--/ end Sidebar and Main Content -->
+        
+    </div>
+
+    <script src="{% static 'blog/js/jquery.js' %}"></script>
+    <script src="{% static 'blog/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'blog/js/custom.js' %}"></script>
+</body>
+</html>

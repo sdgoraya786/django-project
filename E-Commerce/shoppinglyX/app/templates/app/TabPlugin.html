@@ -1,0 +1,144 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block profile-tabs-plugin %}
+<script src="{% static 'app/js/jquery.js' %}"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+{% endblock profile-tabs-plugin %}
+	
+{% block title %}Profile{% endblock title %}
+{% block main-content %}
+<div class="container my-5"  style="min-height: 80vh";>
+	<div class="row">
+		<h3>Welcome Sonam</h3>
+		<!-- Profile sidebsr -->
+		
+		<div class="col-sm-2 border-end">
+			<ul class="nav nav-pills flex-column" id="vertical-tab">
+				<li class="nav-item">
+					<a class="nav-link active" data-toggle="pill" href="#profile">Profile</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" data-toggle="pill" href="#orders">Orders</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" data-toggle="pill" href="#address">Address</a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="col-sm-8 offset-sm-1">
+			<div class="tab-content py-3" id="vertical-tabcontent">
+
+				<!-- Profile Tabs -->
+				<div class="tab-pane fade show active"  id="profile">
+					<div class="row">
+						<div class="col-sm-10 shadow p-5 offset-sm-1">
+							<a href="" class="btn float-md-end">Edit Profile</a>
+							<p>Username: {{request.user}}</p>
+							<p>Email: </p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Order Tabs -->
+				<div class="tab-pane fade"  id="orders">
+					<div class="row">
+						<div class="col-sm-6">Order 1</div>
+						<div class="col-sm-6">Order 2</div>
+					</div>
+				</div>
+
+				<!-- Address Tabs -->
+				<div class="tab-pane fade"  id="address">
+					{% for message in messages %}
+						{% if message.tags %}
+						<div class="alert alert-{{message.tags}} alert-dismissible fade show mt-2" role="alert">
+							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+							{{message}}
+						</div>
+						{% endif %}
+					{% endfor %}
+		  
+					<!-- Button trigger modal -->
+					<button type="button" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#addAddressModal">
+						<i class="material-icons">&#xE147;</i> <span>Add New Address</span>
+					</button>
+
+					<div class="row">
+		  
+						{% if customer_address %}
+							{% for ca in customer_address %}
+								<div class="col-sm-6">
+									<div class="card">
+										<div class="card-body">
+											<h3>Address {{forloop.counter}}</h3>
+											<p>Name: {{ca.name}}</p>
+											<p>State: {{ca.state}}</p>
+											<p>City: {{ca.city}}</p>
+											<p>Location: {{ca.address}}</p>
+											<p>Zipcode: {{ca.Zipcode}}</p>
+										</div>
+									</div>
+								</div>
+							{% endfor %}
+						{% else %}
+							<div class="col-sm-8 offset-sm-2">
+								<div class="card">
+									<div class="card-body">
+										<h4 class="text-center">No Address available.</h4>
+									</div>
+								</div>
+							</div>
+						{% endif %}
+			
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- Address Modal -->
+	<div class="modal modal-lg fade" id="addAddressModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+		  <div class="modal-content p-5">
+			<form method="post"  id="AddressForm" data-child-cat-url="{% url 'load_city' %}">
+			  {% csrf_token %}
+			  <div class="modal-header">						
+				<h4 class="modal-title">Add Address</h4>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			  </div>
+			  <div class="modal-body">
+	
+				  {% if form.non_field_errors %}
+					  {% for error in form.non_field_errors %}
+						  <span class="errornote">{{error}}</span>
+					  {% endfor %}
+				  {% endif %}
+	
+				  {% for fm in form %}
+					  <div class="mb-4">
+						  {{fm.label_tag}}
+						  {{fm}}
+						  {% if fm.errors %}
+							{% for error in fm.errors %}
+								<span class="errorlist text-danger">{{error}}</span><br>
+							{% endfor %}
+						  {% endif %}
+					  </div>
+				  {% endfor %}				
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				<button type="submit" class="btn btn-primary">Add</button>
+			  </div>
+			</form>
+		  </div>
+		</div>
+	</div>
+
+</div>
+
+
+{% endblock main-content %}

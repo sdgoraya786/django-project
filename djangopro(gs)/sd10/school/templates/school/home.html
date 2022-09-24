@@ -1,0 +1,79 @@
+{% extends "school/base.html" %}
+
+{% block title %}
+
+  {% if key == 'Return QuerySets' %}
+    QuerySet API Methods taht return new QuerySets
+  {% elif key == 'Not Return QuerySets' %}
+    QuerySet API Methods that do not return new QuerySets
+  {% elif key == 'Field Lookups' %}
+    QuerySet API Field Lookups
+  {% elif key == 'Aggregation' %}
+    QuerySet API Aggregation
+  {% elif key == 'Q Objects' %}
+    Q Objects
+  {% elif key == 'Limiting QuerySet' %}
+    Limiting QuerySet
+  {% endif %}
+
+{% endblock title %}
+
+{% block tbody %}
+    
+    <!-- for single object -->
+   {% if key == 'Not Return QuerySets' %}
+        <tr>
+            <td scope="row">{{students.id}}</td>
+            <td>{{students.roll_no}}</td>
+            <td>{{students.name}}</td>
+            <td>{{students.city}}</td>
+            <td>{{students.marks}}</td>
+            <td>{{students.division}}</td>
+            <td>{{students.admission_data_time}}</td>
+            <td>{{students.pass_date}} </td>
+        </tr>
+   {% else %}
+   <!-- for multi objects -->
+    {% for student in students %}
+        <tr>
+            <td scope="row">{{student.id}}</td>
+            <td>{{student.roll_no}}</td>
+            <td>{{student.name}}</td>
+            <td>{{student.city}}</td>
+            <td>{{student.marks}}</td>
+            <td>{{student.division}}</td>
+            <td>{{student.admission_data_time}}</td>
+            <td>{{student.pass_date}} </td>
+        </tr>
+    {% endfor %}
+   {% endif %}
+
+{% endblock tbody %}
+
+{% block tuple %}
+    <!-- {% for student in students %}
+        {{student}} <br>
+        {% for st in students %}
+            {{st}}
+        {% endfor %} <br>
+    {% endfor %} -->
+{% endblock tuple %}
+
+
+{% block aggregat %}
+    <h6>Average Data {{avg}}</h6>
+    <h6>Average {{avg.marks__avg}}</h6><hr>
+
+    <h6>Sum Data {{total}}</h6>
+    <h6>Sum {{total.marks__sum}}</h6><hr>
+
+    <h6>Minimum Data {{minimum}}</h6>
+    <h6>Minimum {{minimum.marks__min}}</h6><hr>
+
+    <h6>Maximum Data {{maximum}}</h6>
+    <h6>Maximum {{maximum.marks__max}}</h6><hr>
+
+    <h6>Count Data {{totalcount}}</h6>
+    <h6>Count {{totalcount.marks__count}}</h6><hr>
+{% endblock aggregat %}
+

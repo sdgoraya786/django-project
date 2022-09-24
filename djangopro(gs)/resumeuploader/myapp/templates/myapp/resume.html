@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'myapp/css/bootstrap.min.css' %}">
+    <!-- Datepicker jquery-ui css 10 -->
+    <link rel="stylesheet" href="{% static 'myapp/css/jquery-ui.min.css' %}">
+    <title>Resume Uploader</title>
+</head>
+<body>
+
+    <!-- 6 -->
+    <div class="container">
+        <h4 class="alert alert-danger text-center">Resume Uploader</h4>
+        <div class="row">
+            <div class="col-sm-8">
+                <form action="" method="post" enctype="multipart/form-data" novalidate class="shadow p-5">
+                   {% csrf_token %}
+
+                   {% if form.non_field_errors %}
+                        {% for error in form.non_field_errors %}
+                            <span class="errornote">{{error}}</span>
+                        {% endfor %}
+                    {% endif %}
+        
+                    {% for fm in form %}
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                {{fm.label_tag}}
+                            </div>
+                            <div class="col-sm-9">
+                                {{fm}}
+                            </div>
+                            {% if fm.errors %}
+                                {% for error in fm.errors %}
+                                    <span style="text-indent:140px;" class="errorlist text-danger mt-1">{{error}}</span><br>
+                                {% endfor %}
+                            {% endif %}
+                            <small id="helptext" class="">{{fm.help_text|safe}}</small>
+                        </div>
+                    {% endfor %}
+                    <input type="submit" class="btn btn-secondary  btn-sm" value="Upload">
+                </form>
+            </div>
+
+            <!-- 12 -->
+            <div class="col-sm-4">
+                <h5 class="text-center mb-3"><u>List of Candidates</u></h5>
+                {% for candidate in candidates %}
+                    {{candidate.id}} : <a href="{% url 'candidate' candidate.id %}">{{candidate.name}}</a>
+                    <hr>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== Start Section - 15 Delete Unused Data ========== -->
+        {% comment %}
+            Install django-unused-media: pip install django-unused-media
+            Add django-unused-media to INSTALLED_APPS: python INSTALLED_APPS = (...'django_unused_media',...)
+            To cleanup all unused media files, run management command:
+                ./manage.py cleanup_unused_media
+        {% endcomment %}
+    <!-- ========== End Section ========== -->
+
+
+<script src="{% static 'myapp/js/jquery.js' %}"></script>
+<!-- Datepicker jquery-ui js 10 -->
+<script src="{% static 'myapp/js/jquery-ui.min.js' %}"></script>
+<script src="{% static 'myapp/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'myapp/js/custom.js' %}"></script>
+</body>
+</html>

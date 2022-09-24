@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teachers Registration</title>
+    <style>
+        .errorlist{
+            list-style-type: none;
+            color: #ef2020;
+            font-size: 15px;
+            margin: 0;
+            padding: 0;
+        }
+        .helptext{
+            display: block;
+            margin: 2px 0px 12px;
+            color: #41aa17;
+        }
+        th{
+            text-align: left;
+            vertical-align: text-top;
+        }
+    </style>
+</head>
+<body>
+    <!-- ---- """
+        Model Form Inheritance 70
+    """ ----- -->
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+         <table>{{form}}</table>
+         <input type="submit" value="Submit">
+     </form>
+     <br>
+    <a href="{% url 'home' %}">Back to Home</a>
+</body>
+</html>

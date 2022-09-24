@@ -1,0 +1,13 @@
+body{
+    overflow-x: hidden;
+    background-color: rgb(196, 196, 196);
+}
+#co{
+    text-align: center;
+    background: rgb(27, 24, 29);
+    padding: 10px;
+    color: whitesmoke;
+}
+#corimg{
+    width: 49.7%;
+}

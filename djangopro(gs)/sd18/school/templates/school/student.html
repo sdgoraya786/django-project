@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generic Class Based View - Display View: ListView [Custom Template Name]</title>
+    <style>
+        table, th, td {
+            border: 1px solid rgb(65, 64, 64);
+            border-collapse: collapse;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>roll</th>
+                <th>name</th>
+                <th>coure</th>
+            </tr>
+        </thead>
+        <tbody>
+          {% if students %}
+            {% for student in students %}
+                <tr>
+                    <td scope="row">{{student.id}}</td>
+                    <td>{{student.roll}}</td>
+                    <td>{{student.name}}</td>
+                    <td>{{student.course}}</td>
+                </tr>
+            {% endfor %}
+          {% else %}
+                <tr>
+                    <td colspan="4">No Data Found.</td>
+                </tr>
+          {% endif %}
+
+        </tbody>
+    </table>
+
+<hr>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>roll</th>
+                <th>name</th>
+                <th>coure</th>
+            </tr>
+        </thead>
+        <tbody>
+          {% if freshers %}
+            {% for fresher in freshers %}
+                <tr>
+                    <td scope="row">{{fresher.id}}</td>
+                    <td>{{fresher.roll}}</td>
+                    <td>{{fresher.name}}</td>
+                    <td>{{fresher.course}}</td>
+                </tr>
+            {% endfor %}
+          {% else %}
+                <tr>
+                    <td colspan="4">No Data Found.</td>
+                </tr>
+          {% endif %}
+
+        </tbody>
+    </table>
+    
+</body>
+</html>

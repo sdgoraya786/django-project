@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'enroll/css/bootstrap.min.css' %}">
+    <title>Document</title>
+    <style>
+        .errorlist{
+            list-style-type: none;
+            color: #ef2020;
+            font-size: 15px;
+            margin: 0;
+            padding: 0;
+        }
+        .helptext{
+            display: block;
+            margin: 2px 0px 12px;
+            color: #41aa17;
+        }
+        .alert-success,.alert-danger,.alert-info,.alert-secondary strong {
+            text-transform: capitalize;
+        }
+    </style>
+</head>
+<body>
+    <!-- ---- """
+        Messages Framework 71
+    """ ----- -->
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+         <table>{{form}}</table>
+         <input type="submit" value="Submit">
+     </form>
+    {% if messages %}
+        {% for message in messages %}
+           {% if message.tags %}
+
+            <div class="alert alert-{{message.tags}} alert-dismissible fade show mt-2" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <strong>{{message.tags}}! </strong> {{message}}
+            </div>
+
+           {% endif %}
+        {% endfor %}
+    {% endif %}
+    
+    
+    
+
+    
+    <script>
+      var alertList = document.querySelectorAll('.alert');
+      alertList.forEach(function (alert) {
+        new bootstrap.Alert(alert)
+      }) 
+    </script>    
+
+<script src="{% static 'enroll/js/jquery.js' %}"></script>
+<script src="{% static 'enroll/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

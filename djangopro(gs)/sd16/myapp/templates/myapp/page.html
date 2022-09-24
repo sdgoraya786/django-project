@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table, th, td {
+            border: 1px solid rgb(81, 98, 114);
+            border-collapse: collapse;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <h3>All Page</h3>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Page Name</th>
+                <th>Page Cat.</th>
+                <th>Publish Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in data1 %}
+                <tr>
+                    <td>{{p.user}}</td>
+                    <td>{{p.page_name}}</td>
+                    <td>{{p.page_cat}}</td>
+                    <td>{{p.page_publish_date}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <table>
+        <h3>Page Filtered by Page Category</h3>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Page Name</th>
+                <th>Page Cat.</th>
+                <th>Publish Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in data2 %}
+                <tr>
+                    <td>{{p.user}}</td>
+                    <td>{{p.page_name}}</td>
+                    <td>{{p.page_cat}}</td>
+                    <td>{{p.page_publish_date}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <table>
+        <h3>Page Filtered by User Staff Status</h3>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Page Name</th>
+                <th>Page Cat.</th>
+                <th>Publish Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in data3 %}
+                <tr>
+                    <td>{{p.user}}</td>
+                    <td>{{p.page_name}}</td>
+                    <td>{{p.page_cat}}</td>
+                    <td>{{p.page_publish_date}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>

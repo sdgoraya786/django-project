@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <!-- ABOUT -->
+    <section class="about section-padding pb-0" id="about">
+        <div class="container">
+             <div class="row">
+                
+                  <div class="col-lg-7 mx-auto col-md-10 col-12">
+                       <div class="about-info" data-aos="fade-up" data-aos-delay="200">
+                    
+                            <h2 class="mb-4" ><strong>{{news.news_title}}</strong></h2>
+
+                            {{news.news_desc | safe}}
+                       </div>
+
+                       <div class="about-image" data-aos="fade-up" data-aos-delay="200">
+
+                        <img src="/static/images/office.png" class="img-fluid" alt="office">
+                      </div>
+                  </div>
+
+             </div>
+        </div>
+   </section>
+
+{% endblock %}

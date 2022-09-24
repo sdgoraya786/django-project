@@ -1,0 +1,63 @@
+body {
+    overflow-x: hidden;
+    background-color: rgb(71, 70, 70);
+    color: antiquewhite;
+}
+a {
+    text-decoration: none;
+}
+/* Home */
+.jambo-color {
+    background-color: rgb(83, 81, 81);
+}
+/* Contact */
+form {
+    color: rgb(177, 168, 168);
+}
+.form-control {
+    background-color: rgb(177, 168, 168);
+    border: none;
+}
+/* form input:focus {
+    outline-color: rgb(245, 211, 19);
+} */
+/* input:focus {
+    outline: none;
+} */
+
+/* login page */
+.loginform label {
+    padding-bottom: 8px;
+}
+.errornote {
+    font-size: 13px;
+    font-weight: 700;
+    display: block;
+    padding: 8px 12px;
+    margin: 0 0 20px;
+    color: #ba2121;
+    border: 1px solid #ba2121;
+    border-radius: 4px;
+    background-color: #fff;
+    background-position: 5px 12px;
+    overflow-wrap: break-word;
+}
+
+/* Dashboard css */
+a.addlink {
+    text-decoration: none;
+    display: block;
+    float: right;
+    padding: 3px 12px;
+    background: #888;
+    color: #fff;
+    font-weight: bold;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 15px;
+    line-height: 20px;
+}
+a.addlink:hover {
+    background: rgb(128, 128, 128);
+}

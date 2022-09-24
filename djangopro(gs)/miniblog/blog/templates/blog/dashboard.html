@@ -1,0 +1,70 @@
+{% extends "blog/base.html" %}
+
+{% block title %}
+    User Dashboard | SD Goraya
+{% endblock title %}
+
+<!-- Dashboard navbar -->
+{% block navbar %}
+    {% include "blog/navbar2.html" %}
+{% endblock navbar %}
+<!--/ end Dashboard navbar -->
+
+{% block msg %}
+    {% include "blog/messages.html" %}
+{% endblock msg %}
+
+{% block sidebar %}
+<div class="col-sm-3 text-center">
+    <h4 class="text-secondary border border-secondary py-1 mt-4 mb-3">Profile</h4> 
+    {% if full_name %}
+      <h5>{{full_name}}</h5>
+    {% else %}
+        <h5>{{username}}</h5>
+    {% endif %}
+    {% for group in groups %}
+        {{group.name}}
+    {% endfor %}
+  </div>
+{% endblock sidebar %}
+
+{% block content %}
+    
+    <div class="col-sm-9">
+        <!-- <h4 class="text-center alert alert-info mt-3">Show Posts Information</h4> -->
+        <a href="{% url 'addpost' %}" class="addlink my-4">ADD POST +</a>
+        <table class="table bg-white">
+            {% if posts %}
+                <thead>
+                    <tr class="text-center">
+                        <th scope="col" width="28%">Title</th>
+                        <th scope="col">Description</th>
+                        <!-- <th scope="col" width="17%">Action</th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for post in posts %}
+                        <tr>
+                            <td><a href="{% url 'updatepost' post.id %}">{{post.title}}</a></td>
+                            <td>{{post.desc|safe}}</td>
+                            <!-- <td class="text-center">
+                                <a href="{% url 'updatepost' post.id %}" class="btn btn-success btn-sm">Edit</a>
+                                <a href="{% url 'deletepost' post.id %}" class="btn btn-danger btn-sm">Delete</a>
+                                <form action="{% url 'deletepost' post.id %}" method="post" class="d-inline">
+                                   {% csrf_token %}
+                                   <input type="submit" class="btn btn-danger btn-sm" value="Delete">
+                                </form>
+                            </td> -->
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            {% else %}
+                <tr class="text-center">
+                    <td>No Posts Avaliable</td>
+                </tr>
+            {% endif %}
+        </table>
+    </div>
+
+    
+{% endblock content %}

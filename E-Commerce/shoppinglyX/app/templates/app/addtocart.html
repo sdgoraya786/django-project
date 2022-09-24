@@ -1,0 +1,145 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Cart{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+  <div class="row">
+    <h1 class="text-center mb-5">Shopping Cart</h1>
+    <div class="col-sm-8">
+    <div class="card">
+      <div class="card-body">
+        <h3>Cart</h3>
+        <hr class="text-muted">
+          {% for cart in carts %}
+          <!-- <hr class="text-muted hr"> -->
+          <div class="row py-3 cart-product-{{cart.product.id}}">
+            <div class="col-sm-3 text-center align-self-center"><img src="{{cart.product.product_image.url}}" alt="" srcset="" class="img-fluid img-thumbnail shadow-sm" height="150" width="150"> </div>
+            <div class="col-sm-9">
+              <div>
+                <h5>{{cart.product.title}}</h5>
+                <p class="mb-2 text-muted small">{{cart.product.description}}</p>
+                <div class="my-3">
+                  <label for="quantity">Quantity:</label>
+                  <a class="minus-cart btn border-0 {% if cart.quantity == 1 %}disabled{% endif %}" pid="{{cart.product.id}}"><i class="fas fa-minus-square fa-lg"></i></a>
+                    <span id="quantity">{{cart.quantity}}</span>
+                  <a class="plus-cart btn border-0" pid="{{cart.product.id}}"><i class="fas fa-plus-square fa-lg"></i></a>
+                </div> 
+                <div class="d-flex justify-content-between">
+                  <a href="" class="btn btn-sm btn-secondary mr-3 remove-cart" pid="{{cart.product.id}}">Remove item </a>
+                  <p class="mb-0"><span><strong>Rs. {{cart.product.discounted_price}}</strong></span></p>
+                </div>
+                </div>
+              </div>
+            </div>
+
+           {% if forloop.counter < totalCart %}
+            <hr class="text-muted cart-product-{{cart.product.id}}">
+           {% endif %}
+
+          {% endfor %}
+
+      </div>
+    </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="card">
+        <div class="card-body">
+          <h3>The Total Amount of</h3>
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">Amount<span id="amount">Rs. {{amount}}</span></li>
+            <li class="list-group-item d-flex justify-content-between align-items-center px-0">Shipping<span id="shipping_amount">Rs. {{shipping_amount}}</span></li>
+            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+              <div>
+                <strong>Total</strong> <small>(including VAT)</small>
+              </div>
+              <span><strong id="total_amount">Rs. {{total_amount}}</strong></span>
+            </li>
+          </ul>
+          <div class="d-grid"><a href="{% url 'checkout' %}" class="btn btn-primary">Place Order</a></div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="mb-4">We accept</h5>
+          <img src="{% static 'app/images/payment.png' %}" alt="" class="img-fluid">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock main-content %}
+
+<!-- 11 -->
+{% block jquery-ajaxy %}
+<script>
+  $('.plus-cart').click(function(){
+    var id = $(this).attr("pid").toString();
+    var qty = this.parentNode.children[2]
+    $.ajax({
+      type: 'GET',
+      url: "/pluscart",
+      data: {
+        product_id: id
+      },
+      success: function(data){
+        qty.innerText = data.quantity;
+        $('#amount').text('Rs. ' + data.amount);
+        $('#total_amount').text('Rs. ' + data.total_amount);
+        $('.cart-product-'+id+' .minus-cart').removeClass("disabled");
+          
+      }
+    });
+  });
+
+  $('.minus-cart').click(function(){
+    var id = $(this).attr("pid").toString();
+    var qty = this.parentNode.children[2]
+    $.ajax({
+      type: 'GET',
+      url: "/minuscart",
+      data: {
+        product_id: id
+      },
+      success: function(data){
+        qty.innerText = data.quantity;
+        $('#amount').text('Rs. ' + data.amount);
+        $('#total_amount').text('Rs. ' + data.total_amount);
+        if (data.quantity == 1) {
+          $('.cart-product-'+id+' .minus-cart').addClass("disabled");
+        }
+      }
+    });
+  });
+
+  $('.remove-cart').click(function(e){
+    e.preventDefault()
+    var id = $(this).attr("pid").toString();
+    $.ajax({
+      type: 'GET',
+      url: "/removecart",
+      data: {
+        product_id: id
+      },
+      success: function(data){
+        if (data.total_cart_products == 0) {
+          // var url = $("#AddressForm").attr("data-url");
+          document.location.href = '/cart'
+        }
+        $('#amount').text('Rs. ' + data.amount);
+        $('#shipping_amount').text('Rs. ' + data.shipping_amount);
+        $('#total_amount').text('Rs. ' + data.total_amount);
+        $('.cart-product-'+id).remove();
+        $('.total_cart').text(data.total_cart_products);
+      }
+    });
+  });
+</script>
+{% endblock jquery-ajaxy %}

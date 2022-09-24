@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- CONTACT -->
+<section class="contact section-padding">
+    <div class="container">
+         <div class="row">
+                <div class="col-lg-6 mx-auto col-md-7 col-12 py-5 mt-5 text-center" data-aos="fade-up">
+                    <h1 class="mb-4"><strong>Build a Calculator</strong></h1>
+                </div>
+
+              <div class="col-lg-8 mx-auto col-md-10 col-12">
+              
+              <!-- Follow https://templatemo.com/contact page to setup your own contact form -->
+              
+                <form method="post" class="contact-form" data-aos="fade-up">
+                 {% csrf_token %}
+                    <input type="text" class="form-control" name="n1" placeholder="Enter Value">
+                    <select name="opr" class="form-control">
+                      <option value="">Select Opr...</option>
+                      <option value="+">+</option>
+                      <option value="-">-</option>
+                      <option value="*">*</option>
+                      <option value="/">/</option>
+                    </select>
+                    <input type="text" class="form-control" name="n2" placeholder="Enter Value">
+                  
+                    <button type="submit" class="form-control" id="submit-button" name="submit">Calculate</button>
+                    
+                    <label for="">OutPut</label>
+                    <input type="text" class="form-control" value="{{c}}" name="output">
+                </form>
+              </div>
+
+         </div>
+    </div>
+</section>
+</div>
+{% endblock %}

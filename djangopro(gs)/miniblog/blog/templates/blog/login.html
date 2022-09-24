@@ -1,0 +1,43 @@
+{% extends "blog/base.html" %}
+
+{% block title %}
+    Login User | SD Goraya
+{% endblock title %}
+
+{% block msg %}
+    {% include "blog/messages.html" %}
+{% endblock msg %}
+
+{% block content %}
+    <div class="col-md-6 offset-md-3">
+        <h3 class="text-secondary border border-bottom-0 border-secondary text-center py-3 mt-5">LOGIN USER</h3>
+        
+        <form action="" method="post" novalidate>
+            {% csrf_token %}
+
+            <div class="border border-secondary rounded-1 py-5 px-4">
+
+                {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                    <span class="errornote">{{error}}</span>
+                {% endfor %}
+                {% endif %}
+
+                {% for fm in form %}
+                    <div class="loginform mb-3">
+                        {{fm.label_tag}}
+                        {{fm}}
+                        {% if fm.errors %}
+                            {% for error in fm.errors %}
+                                <span class="errorlist">{{error}}</span>
+                            {% endfor %}
+                        {% endif %}
+                        <small id="helptext" class="">{{fm.help_text|safe}}</small>
+                    </div>
+                {% endfor %}
+                <input type="submit" class="btn btn-secondary d-block mx-auto" value="Log in">
+            </div>
+        </form>
+    </div>
+
+{% endblock content %}

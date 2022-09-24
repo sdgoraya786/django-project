@@ -1,0 +1,111 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %} {{parent_category | capfirst}}{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+ <div class="row">
+  <div class="col-sm-3">
+    <!-- <div class="list-group"> -->
+        <!-- for Products Brndes -->
+        <!-- <a href="{% url 'catproducts' parent_category child_category %}" class="list-group-item list-group-item-action {% if not request.GET.b %} active {% endif %}">All Brands</a> -->
+        
+       {% comment %}
+        {% for _ in productbrands %}
+        <!-- <a href="?b={{productbrand.name}}" brandname="{{productbrand.name}}" class="list-group-item list-group-item-action productbrand {% if request.GET.b == productbrand.name %} active {% endif %}">{{productbrand.name}}</a> -->
+        {% endfor %}
+       {% endcomment %}
+
+    <!-- </div> -->
+    <!-- ------------------------ -->
+    <h3 class="border-bottom mb-4 pb-1">Filters</h3>
+    <!-- Filter 1 -->
+    <div class="card mb-4">
+      <h6 class="card-header">Categories</h6>
+      {% for pcat in parentCategory %}
+        <div class="card-body">
+          <h6 class="card-title">{{pcat.parent_cat}}</h6>
+        </div>
+        <div class="list-group list-group-flush">
+          {% for ccat in childCategory %}
+            {% if pcat.id == ccat.parent_category_id %}
+              <li class="list-group-item"> 
+                <input class="filter-checkbox" data-filter="category" type="checkbox" value="{{ccat.id}}">
+                &nbsp; {{ccat.child_cat}}
+              </li>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+    <!-- Filter 2 -->
+    <div class="card mb-4">
+      <h6 class="card-header">Brands</h6>
+      <div class="list-group list-group-flush">
+        {% for productbrand in productbrands %}
+          <li class="list-group-item">
+            <input class="filter-checkbox" data-filter="brand" type="checkbox" value="{{productbrand.id}}">
+            &nbsp; {{productbrand.name}}
+          </li>
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+  <!-- -----End Filters------ -->
+
+  <div class="col-sm-8 offset-sm-1">
+   <div class="row" id="filterProducts">
+    <p id="ajaxloader">Loading...</p>
+    {% for catProduct in catProducts %}
+      <div class="col-sm-4 text-center mb-4">
+        <a href="{% url 'product-detail' catProduct %}" class="btn">
+          <div class="item">
+            <img src="{{catProduct.product_image.url}}" class="img-fluid" alt="....">
+            <div class="fw-bold">{{catProduct.title}}</div>
+            <div class="fw-bold">Rs. {{catProduct.discounted_price}}</div>
+            <small class="fw-light text-decoration-line-through">{{catProduct.selling_price}}</small>
+          </div>
+        </a>
+      </div>
+    {% endfor %}
+
+   </div>
+  </div>
+ </div>
+</div>
+
+
+{% endblock main-content %}
+
+{% block jquery-ajaxy %}
+<script>
+  $(document).ready(function(){
+    $('#ajaxloader').hide();
+    $('.filter-checkbox').click(function(){
+      var _filterobj = {};
+      $('.filter-checkbox').each(function(index,ele){
+        var _filterVal = $(this).val();
+        var _filterKey = $(this).data('filter');
+        _filterobj[_filterKey] = Array.from(document.querySelectorAll('input[data-filter='+_filterKey+']:checked')).map(function(el){
+          return el.value;
+        });
+      });
+
+      // Run Ajax
+      $.ajax({
+        url: '/filter-data',
+        data:_filterobj,
+        dataType: 'json',
+        beforeSend: function(){
+          $('#ajaxloader').show();
+        },
+        success: function(data){
+          console.log(data);
+          $('#filterProducts').html(data.data);
+          $('#ajaxloader').hide();
+        }
+      }); 
+    });
+  });
+</script>
+{% endblock jquery-ajaxy %}

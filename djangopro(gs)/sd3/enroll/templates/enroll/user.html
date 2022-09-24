@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic URL</title>
+</head>
+<body>
+    <h3>All Users</h3>
+    <a href="{% url 'DynamicURL' 1 %}">User 1</a><br>
+    <a href="{% url 'DynamicURL' 2 %}">User 2</a><br>
+    <a href="{% url 'DynamicURL' 3 %}">User 3</a><br><br>
+
+    <a href="{% url 'SubDetails' 1 4 %}">Sub User 1</a><br>
+    <a href="{% url 'SubDetails' 2 5 %}">Sub User 2</a><br>
+    <a href="{% url 'SubDetails' 3 6 %}">Sub User 3</a><br><br>
+
+    <a href="{% url 'home' %}">Back to Home</a>
+</body>
+</html>

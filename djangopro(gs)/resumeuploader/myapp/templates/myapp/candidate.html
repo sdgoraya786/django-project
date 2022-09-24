@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% load static %}
+{% load myfilter %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'myapp/css/bootstrap.min.css' %}">
+    <title>Candidate</title>
+</head>
+<body>
+    <!-- 13 -->
+    <div class="container">
+        <h4 class="alert alert-danger text-center">Candidate Details</h4>
+        <div class="row">
+            <div class="col-sm-10 shadow p-5 offset-sm-1">
+                <h5 class="text-center"><u>Resume</u></h5>
+                <p class="float-md-end">Application No: {{candidate.id}}</p>
+                <img src="{{candidate.profile_image.url}}" class="img-fluid img-thumbnail float-md-end mt-md-5" width="150" height="150" alt="">
+                <p>Name: {{candidate.name}}</p>
+                <p>Date of Birth: {{candidate.dob}}</p>
+                <p>Gender: {{candidate.gender}}</p>
+                <p>Address: {{candidate.locality}}, {{candidate.city}}, {{candidate.state}} - {{candidate.pin}}</p>
+                <p>Mobile No: {{candidate.moblie}}</p>
+                <p>Email: {{candidate.email}}</p>
+                <p>Job Cities: {{candidate.job_city | remove_special:"[]'"}}</p>
+                <p>Attachment: <a href="{{candidate.upload_cv.url}}">Download CV</a></p>
+                <a href="{% url 'home' %}" class="btn btn-danger btn-sm">Back to Home</a>
+            </div>
+        </div>
+    </div>
+
+<script src="{% static 'myapp/js/jquery.js' %}"></script>
+<script src="{% static 'myapp/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

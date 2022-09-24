@@ -1,0 +1,115 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Address{% endblock title %}
+{% block main-content %}
+<div class="container my-5" style="min-height: 80vh";>
+  <div class="row">
+        <!-- Profile sidebsr -->
+    {% include "app/profilesidebar.html" %}
+
+    <div class="col-sm-9 offset-sm-1">
+
+        {% for message in messages %}
+          {% if message.tags %}
+            <div class="alert alert-{{message.tags}} alert-dismissible fade show mt-2" role="alert">
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              {{message}}
+            </div>
+          {% endif %}
+        {% endfor %}
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#addAddressModal">
+          <i class="material-icons">&#xE147;</i> <span>Add New Address</span>
+        </button>
+        <!-- <a href="#addAddressModal" class="btn btn-success" data-be-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Address</span></a> -->
+        <div class="row">
+
+        {% if customer_address %}
+          {% for ca in customer_address %}
+            <div class="col-sm-6">
+              <div class="card">
+                <div class="card-body">
+                  <h3>Address {{forloop.counter}}</h3>
+                  <p>Name: {{ca.name}}</p>
+                  <p>State: {{ca.state}}</p>
+                  <p>City: {{ca.city}}</p>
+                  <p>Location: {{ca.address}}</p>
+                  <p>Zipcode: {{ca.Zipcode}}</p>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <div class="col-sm-8 offset-sm-2">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="text-center">No Address available.</h4>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+
+        </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal modal-lg fade" id="addAddressModal" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content p-5">
+        <form method="post"  id="AddressForm" data-city-url="{% url 'load_city' %}">
+          {% csrf_token %}
+          <div class="modal-header">						
+            <h4 class="modal-title">Add Address</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+
+              {% if form.non_field_errors %}
+                  {% for error in form.non_field_errors %}
+                      <span class="errornote">{{error}}</span>
+                  {% endfor %}
+              {% endif %}
+
+              {% for fm in form %}
+                  <div class="mb-4">
+                      {{fm.label_tag}}
+                      {{fm}}
+                      {% if fm.errors %}
+                        {% for error in fm.errors %}
+                            <span class="errorlist text-danger">{{error}}</span><br>
+                        {% endfor %}
+                      {% endif %}
+                  </div>
+              {% endfor %}				
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Add</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock main-content %}
+
+{% block jquery-ajaxy %}
+<script>
+  $("#id_state").change(function () { 
+    var url = $("#AddressForm").attr("data-city-url"); 
+    var state_id = $(this).val();
+    $.ajax({ 
+      url: "{% url 'load_city' %}",
+      data: {
+        'state': state_id 
+      },
+      success: function (data) { 
+        $("#id_city").html(data);
+      }
+    });
+  });
+</script>
+{% endblock jquery-ajaxy %}

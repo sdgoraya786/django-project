@@ -1,0 +1,60 @@
+{% extends "enroll/base.html" %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-4">
+            <h4 class="text-center alert alert-info">Add/Update Student</h4>
+            <form method="POST" id="id_sform" novalidate>
+                {% csrf_token %}
+                <input type="hidden" name="stid" id="id_stid">
+                {{forms.as_p}}
+                <input type="button" value="Add" id="savebtn" class="btn btn-success mb-3 w-100">
+            </form>
+            <div id="success-msg"></div>
+            <div id="error-msg"></div>
+        </div>
+        <div class="col-sm-7 offset-1">
+            <h4 class="text-center alert alert-info">All Students</h4>
+            <!-- <form action=""> -->
+            <div class="mb-3">
+                <input type="text" name="search" id="id_search" class="form-control" placeholder="Seach here" aria-describedby="helpId">
+            </div>
+            <!-- </form> -->
+            <table class="table table-responsive table-hover">
+                <thead>
+                    <tr>
+                        <th>SR.NO</th>
+                        <th>NAME</th>
+                        <th>EMAIL</th>
+                        <th>PASSWORD</th>
+                        <th>ACTION</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                    {% if st_data %}
+                        {% for st in st_data %}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{st.name}}</td>
+                                <td>{{st.email}}</td>
+                                <td>{{st.password}}</td>
+                                <td>
+                                    <input type="button" value="Edit" class="btn btn-success btn-sm btn-edit" data-sid="{{st.id}}">
+                                    <input type="button" value="Delete" class="btn btn-danger btn-sm btn-del" data-sid="{{st.id}}">
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr class="text-center alert alert-warning">
+                            <td colspan="5">No Records</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block ajax %}
+   {% include "enroll/ajax.html" %}
+{% endblock ajax %}

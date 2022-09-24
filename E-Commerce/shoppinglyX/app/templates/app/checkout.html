@@ -1,0 +1,129 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Check Out{% endblock title %}
+{% block main-content %}
+<div class="container">
+ <div class="row mt-5">
+  <div class="col-sm-6">
+    <h4>Order Summary</h4>
+    <hr>
+    {% for item in cart_items %}
+      <div class="card mb-2">
+        <div class="card-body">
+          <h5>Product: {{item.product.title}}</h5>
+          <p>Quantity: {{item.quantity}}</p>
+          <p class="fw-bold">Price: {{item.total_cost}}</p>
+        </div>
+      </div>
+    {% endfor %}
+    <p class="fw-bold">Total Cost + Rs. 70 = Rs. {{total_amount}}</p>
+    <small>Term and Condition: Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, ullam saepe! Iure optio repellat dolor velit, minus rem. Facilis cumque neque numquam laboriosam, accusantium adipisci nisi nihil in et quis?</small>
+  </div>
+  <div class="col-sm-4 offset-sm-1">
+    <h4>Select Shipping Address</h4>
+    <hr>
+    {% if address %}
+      <form method="post" action="{% url 'paymentdone' %}" id="checkoutForm">
+       {% csrf_token %}
+        {% for a in address %}
+          <div class="card">
+            <div class="card-body">
+            <h5>{{a.name}}</h5>
+            <p>{{a.address}} {{a.city}} {{a.state}} - {{a.Zipcode}}</p>
+            </div>
+          </div>
+          <div class="form-check mt-2 mb-5">
+            <input name="customerId" type="radio" value="{{a.id}}" id="id_address{{forloop.counter}}" class="form-check-input" required>
+            <label class="form-check-label fw-bold" for="id_address{{forloop.counter}}">
+              Address: {{forloop.counter}}</label>
+          </div>
+        {% endfor %}
+        <div class="text-end">
+          <!-- <button type="submit" class="btn btn-warning mt-3 px-5 fw-bold">Continue</button> -->
+
+          <!-- Set up a container element for Button -->
+          <div id="paypal-button-container"></div>
+
+        </div>
+      </form>
+    {% else %}
+      <p>For Place Order, you should add a address for shipping your products</p>
+      <a href="{% url 'address' %}">add address</a>
+    {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock main-content %}
+
+<!-- 15 -->
+{% block jquery-ajaxy %}
+<!-- Sample PayPal credentials (client-id) are included -->
+<script src="https://www.paypal.com/sdk/js?client-id=AWhEF29wXbm4_84bDsIp6vz1xUWeYZ8kDI1nSjjvph31tLNS3oKaTUawRr09i31hOp5FOh5-nhGjdfs9&currency=USD&intent=capture" data_source="integrationbuilder"></script>
+<script>
+  const fundingSources = [
+    paypal.FUNDING.PAYPAL,
+      // paypal.FUNDING.PAYLATER,
+      paypal.FUNDING.CARD
+    ]
+
+  for (const fundingSource of fundingSources) {
+    const paypalButtonsComponent = paypal.Buttons({
+      fundingSource: fundingSource,
+
+      // optional styling for buttons
+      // https://developer.paypal.com/docs/checkout/standard/customize/buttons-style-guide/
+      style: {
+        shape: 'pill',
+        height: 40,
+      },
+
+      // set up the transaction
+      createOrder: (data, actions) => {
+        // pass in any options from the v2 orders create call:
+        // https://developer.paypal.com/api/orders/v2/#orders-create-request-body
+        const createOrderPayload = {
+          purchase_units: [
+            {
+              amount: {
+                value: '{{total_amount}}',
+              },
+            },
+          ],
+        }
+
+        return actions.order.create(createOrderPayload)
+      },
+
+      // finalize the transaction
+      onApprove: (data, actions) => {
+        const captureOrderHandler = (details) => {
+          const payerName = details.payer.name.given_name
+          // console.log('Transaction completed!')
+          alert('Transaction completed ' + payerName + ' !');
+          document.getElementById('checkoutForm').submit();
+        }
+
+        return actions.order.capture().then(captureOrderHandler)
+      },
+
+      // handle unrecoverable errors
+      onError: (err) => {
+        // console.error(
+        //   'An error prevented the buyer from checking out with PayPal',
+        // )
+        alert('An error prevented the buyer from checking out with PayPal');
+      },
+    })
+
+    if (paypalButtonsComponent.isEligible()) {
+      paypalButtonsComponent
+        .render('#paypal-button-container')
+        .catch((err) => {
+          console.error('PayPal Buttons failed to render')
+        })
+    } else {
+      console.log('The funding source is ineligible')
+    }
+  }
+</script>
+{% endblock jquery-ajaxy %}

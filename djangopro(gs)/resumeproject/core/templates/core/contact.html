@@ -1,0 +1,62 @@
+{% extends "core/base.html" %}
+
+{% block title %}
+    Contact Us
+{% endblock title %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h2 class="text-warning border-bottom mb-5">CONTACT US</h2>
+        <div class="row text-white mb-5">
+            <p class="mx-auto mb-5 text-center">Do you have any questions? Please do not hesitate to contact. 
+                I will come back to you within a matter of hours to help you.
+            </p>
+            <div class="col-sm-9 mb-5">
+                <form action="">
+                    <div class="row mb-3">
+                        <div class="col-md-6 mt-3">
+                            <label for="inputName">Name</label>
+                            <input type="text" class="form-control" name="name" id="inputName">
+                        </div>
+                        <div class="col-md-6 mt-3">
+                            <label for="inputEmail">Email *</label>
+                            <input type="email" class="form-control" name="email" id="inputEmail">
+                        </div>
+                    
+                        <div class="col-12 mt-3">
+                            <label for="inputSubject" class="form-label">Subject</label>
+                            <input type="text" class="form-control" name="subject" id="inputSubject">
+                        </div>
+                        <div class="col-12 mt-3">
+                            <label for="inputMessage" class="form-label">Message *</label>
+                            <textarea name="Message" class="form-control" id="inputMessage" cols="30" rows="2"></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </form>
+            </div>
+            <div class="col-sm-3 text-center">
+                <ul class="list-unstyled">
+                    <li>
+                        <i class="fas fa-map-marker-alt fa-xl mb-2 i-color" aria-hidden="true"></i>
+                        <p>Daharanwala, Punjab, Pakistan</p>
+                    </li>
+                    <li>
+                        <i class="fa fa-phone fa-xl mt-4 mb-2 i-color" aria-hidden="true"></i>
+                        <p>+92 3064537022</p>
+                    </li>
+                    <li>
+                        <i class="fa fa-envelope fa-xl mt-4 mb-2 i-color" aria-hidden="true"></i>
+                        <p>contact@sd.com</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center mb-5">
+        <a href="#" target="_blank"><i class="fab fa-facebook-f i-color me-4" aria-hidden="true"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-twitter i-color me-4" aria-hidden="true"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-instagram i-color" aria-hidden="true"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-dribbble i-color ms-4" aria-hidden="true"></i></a>
+    </div>
+{% endblock content %}

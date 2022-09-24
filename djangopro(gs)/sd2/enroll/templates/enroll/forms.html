@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .helptext{
+            color: rgb(250, 40, 40);
+            text-transform: capitalize;
+        }
+        .somecss1{
+            color: white;
+            background-color: red;
+            border: none;
+            outline: none;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- # Loop Form Fields 50 # -->
+    <!-- <form action="" method="get">
+        {% for field in form %}
+            {{field.label_tag}} 
+            {{field}}<br>
+        {% endfor %}
+    </form> -->
+
+    <!-- # Form Hidden Fields 50 # -->
+    <!-- <form action="" method="get">
+        {% for field in form.visible_fields %}
+            {{field.label_tag}} 
+            {{field}}<br>
+        {% endfor %}
+        
+        {% for hidden in form.hidden_fields %} 
+            {{hidden}}<br>
+        {% endfor %}
+    </form> -->
+
+    <!-- # Form Field Argument 51 # -->
+    <!-- <form action="" method="get">
+        {{form.as_p}}
+        <input type="submit" value="Submit">
+    </form> -->
+
+    <!-- # Form Widgets 52 # -->
+    <!-- <form action="" method="get">
+        {{form.as_p}}
+        <input type="submit" value="Submit">
+    </form> -->
+
+    <!-- ---- Form using Method POST and CSRF Token 55 ----- -->
+    <form action="" method="post">
+        {% csrf_token %}
+         {{form.as_p}}
+         <input type="submit" value="Submit">
+     </form>
+</body>
+</html>

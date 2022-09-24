@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'blog/css/bootstrap.min.css' %}">
+    <title>Pagination with Class Based View</title>
+</head>
+<body>
+    <div class="container">
+        <h3 class="text-center my-5">Blog Post</h3>
+        <div class="row">
+            <div class="col-sm-8 offset-2 mb-4">
+                <h4>{{post.title}}</h4>
+                <p>{{post.description}}</p>
+                <small>{{post.publish_date}}</small><br>
+                <a href="{% url 'posts' %}">Back</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'blog/js/jquery.js' %}"></script>
+    <script src="{% static 'blog/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

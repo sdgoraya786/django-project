@@ -1,0 +1,5 @@
+
+<option value="">---------</option>
+{% for childcat in child_cat %}
+<option value="{{ childcat.pk }}">{{ childcat.child_cat }}</option>
+{% endfor %}

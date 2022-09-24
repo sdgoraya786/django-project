@@ -1,0 +1,20 @@
+{% extends "blog/base.html" %}
+
+{% block title %}
+    Logged out | User Dashboard | SD Goraya
+{% endblock title %}
+
+<!-- Dashboard navbar -->
+{% block navbar %}
+    {% include "blog/navbar3.html" %}
+{% endblock navbar %}
+<!--/ end Dashboard navbar -->
+
+{% block content %}
+    <div class="col-md-6 offset-md-3">
+        <h3 class="text-secondary border border-secondary text-center py-3 mt-5 mb-3">Logged out</h3>
+        <a href="{% url 'home' %}" class="text-info">Home</a>
+        <p>Thanks for spending some quality time with the web site today.</p>
+        <a href="{% url 'login' %}" class="text-info">Log in again</a>
+    </div>
+{% endblock content %}

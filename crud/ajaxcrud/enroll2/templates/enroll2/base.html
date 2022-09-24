@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD 5 | SD GORAY</title>
+    <link rel="stylesheet" href="{% static 'enroll2/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'enroll2/css/aos.css' %}">
+    <!-- <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" /> -->
+
+    <style>
+        #success-msg, #error-msg {
+            padding: 6px;
+            font-size: 20px;
+            border-radius: 5px;
+            display: none;
+        }
+        #success-msg {
+            background-color: #b7f1c99c;
+            color: #047212;
+        }
+        #error-msg {
+            background-color: #e39c9ca6;
+            color: #871d1d;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h2 class="text-center alert alert-danger">Django Function Based View Model Form CRUD Project with Ajax and jQuery</h2>
+       {% block content %}
+           
+       {% endblock content %}
+    </div>
+    
+<script src="{% static 'enroll2/js/jquery.js' %}"></script>
+<script src="{% static 'enroll2/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'enroll2/js/aos.js' %}"></script>
+<script>
+    // AOS ANIMATION
+    AOS.init({
+      disable: 'mobile',
+      duration: 800,
+      anchorPlacement: 'center-bottom'
+    });
+
+    // $("#up-st").click(function () {
+    //     // $(this).val('Please wait..');
+    //     // $(this).attr('disabled', true);
+    //     setTimeout(() => { 
+    //         // $(this).attr('disabled', false);
+    //         // $(this).val('Submit');
+    //     }, 2000);
+    // });
+
+    // $("#up-st").on('click',function(){
+    //     setTimeout(function(){
+    //         alert("Using setTimeout in jQuery");}, 2000);
+    // });
+</script>
+{% block ajax %}{% endblock ajax %}
+</body>
+</html>

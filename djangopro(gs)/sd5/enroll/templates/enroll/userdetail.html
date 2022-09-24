@@ -1,0 +1,14 @@
+{% extends "enroll/base.html" %}
+
+{% block title %}
+    {{username}} | Change user | admin site
+{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <form action="" method="post">
+           {% csrf_token %}
+           {{form.as_p}}
+        </form>
+    </div>
+{% endblock content %}

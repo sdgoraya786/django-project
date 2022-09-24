@@ -1,0 +1,40 @@
+{% extends "enroll2/base.html" %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-4">
+            <h4 class="text-center alert alert-info">Add/Update Student</h4>
+            <form method="POST" id="id_sform" novalidate>
+                {% csrf_token %}
+                <input type="hidden" name="stid" id="id_stid">
+                {{forms.as_p}}
+                <input type="button" value="Add" id="savebtn" class="btn btn-success mb-3 w-100">
+            </form>
+            <div id="success-msg"></div>
+            <div id="error-msg"></div>
+        </div>
+        <div class="col-sm-7 offset-1">
+            <h4 class="text-center alert alert-info">All Students</h4>
+            <div class="mb-3">
+                <input type="text" name="search" id="id_search" class="form-control" placeholder="Seach here" aria-describedby="helpId">
+            </div>
+            <table class="table table-responsive table-hover">
+                <thead>
+                    <tr>
+                        <th>SR.NO</th>
+                        <th>NAME</th>
+                        <th>EMAIL</th>
+                        <th>PASSWORD</th>
+                        <th>ACTION</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block ajax %}
+   {% include "enroll2/ajax.html" %}
+{% endblock ajax %}

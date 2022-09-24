@@ -1,0 +1,34 @@
+{% extends "enroll/base.html" %}
+{% load static %}
+
+{% block title %}
+    User Login
+{% endblock title %}
+
+{% block content %}
+    <div class="container">
+
+        <!-- for messages -->
+    {% include "enroll/messages.html" %}
+
+        <form action="" method="post" novalidate>
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+                <span class="errorlist">{{error}}</span>
+            {% endfor %}
+            {% endif %}
+
+            {% for fm in form %}
+                <div class="form-group mb-3">
+                    {{fm.label_tag}}
+                    {{fm}} {{fm.errors|striptags}}
+                    <small id="helptext" class="text-muted">{{fm.help_text|safe}}</small>
+                </div>
+            {% endfor %}
+            <input type="submit" class="btn btn-info" value="Login">
+        </form>
+        <p>Don't have an account? <a href="{% url 'singup' %}">Register</a></p>
+    </div>
+{% endblock content %}
+   

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Info</title>
+    <style>
+        .table,.table th,.table td {
+            border: 1px solid black;
+            border-spacing: 0px;
+        }
+        .table th,.table td {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    
+        <form action="" method="get">
+            <!-- <table>{{form}}</table> -->
+            <!-- {{form.as_p}} -->
+            <!-- {{form.first_name}} -->
+            <!-- <input type="submit" value="Submit"> -->
+
+
+
+<!--//////////// Render Form Fields Manually ///////////////-->
+            <div>
+                <label for="{{form.first_name.id_for_label}}">Name: </label>
+                {{form.first_name}}
+            </div>
+
+            <div>
+                {{form.first_name.label_tag}}
+                {{form.first_name}}
+            </div>
+
+            <div>
+                {{form.first_name.label}}
+                <!-- show initial value -->
+                {{form.first_name.value}}  
+                <!-- show name attribute value of input field -->
+                {{form.first_name.html_name}}  
+                {{form.first_name.help_text}}  
+                {{form.first_name.field.required}}  
+            </div>
+        </form>
+
+    <!-- /////////////////// -->
+    <h1>Student Page</h1>
+   {% if stu %}
+    <h4>Enroll Student</h4>
+    <table class="table bordered table-striped table-inverse table-responsive">
+        <thead class="thead-inverse">
+            <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>EMAIL</th>
+                <th>PASSWORD</th>
+                <th>COMMENT</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for s in stu %}
+                    <tr>
+                        <td>{{s.id}}</td>
+                        <td>{{s.stu_name}}</td>
+                        <td>{{s.stu_email}}</td>
+                        <td>{{s.stu_pass}}</td>
+                        <td>{{s.stu_comment}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+    </table>
+    
+   {% else %}
+    <h4>No Data Found</h4>
+   {% endif %}
+</body>
+</html>

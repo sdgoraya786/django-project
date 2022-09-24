@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- auto refresh web page -->
+    <!-- <meta http-equiv="refresh" content="1"> -->
+
+    <link rel="stylesheet" href="{% static 'mycount/css/bootstrap.min.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'mycount/css/main.css' %}">
+    <title>Page Counter</title>
+</head>
+<body class="bg-dark">
+    
+    <div class="container d-flex align-items-center justify-content-center h-100">
+       {% if counter >= 1 %}
+        <h1 class="text-warning display-2">Page Count:
+            <span class="text-white">{{counter}}</span>
+        </h1>
+       {% else %}
+        <h1 class="text-warning display-2">
+            <span class="text-white">{{counter}}</span>
+        </h1>
+       {% endif %}
+    </div>
+
+    <script src="{% static 'mycount/js/jquery.js' %}"></script>
+    <script src="{% static 'mycount/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

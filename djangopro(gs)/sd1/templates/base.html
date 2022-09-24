@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/fontawesome.min.css" integrity="sha384-zIaWifL2YFF1qaDiAo0JFgsmasocJ/rqu7LKYH8CoBEXqGbb9eO+Xi3s6fQhgFWM" crossorigin="anonymous"> -->
+   {% block css %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+   {% endblock css %}
+   
+
+    
+    <title>{% block title %}{% endblock  %}</title>
+</head>
+<body>
+    
+   {% block content %}
+       
+   {% endblock content %}
+   <p>Template Inheritance 1st method -- [ extends project/templates/base.html file to other app  ]</p>
+
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/all.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/all.js' %}"></script>
+<script src="{% static 'course/js/all.js' %}"></script>
+</body>
+</html>

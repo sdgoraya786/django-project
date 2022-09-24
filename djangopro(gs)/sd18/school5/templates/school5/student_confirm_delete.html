@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load my_tags %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generic Class Based View - Editing View: DeleteView</title>
+</head>
+<body>
+    <h4>Are you sure?</h4>
+    <p>Are you sure you want to delete the selected {{ object|get_model_name }}? All of the following objects and their related items will be deleted:</p>
+    <h3><b>Summary</b></h3>
+    <ul>
+        <li>{{ object|get_model_name }}: {{len_stu}}</li>
+
+           {% comment %}
+           {% for item in object %}
+            {{ forloop.counter }}
+            {% endfor %}
+           {% endcomment %}
+
+          {% comment %}
+          {% with total=object.length %}
+            <p class="float-right">{{ total|default:"0" }} record{{ total|pluralize }} found</p>
+          {% endwith %}
+          {% endcomment %}
+
+    </ul>
+    <h3><b>Objects</b></h3>
+    <ul>
+        <li>{{ object|get_model_name }}: <a href="{% url 'studentdetail' object.id %}">{{object}}</a></li>
+    </ul>
+
+    <form action="" method="post">
+       {% csrf_token %}
+       <input type="submit" value="Yes, I’m sure">
+       <button><a href="{% url 'studentdetail' object.id %}">No, take me back</a></button>
+    </form>
+</body>
+</html>

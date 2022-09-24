@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Bootstrap</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	
+	<link rel="stylesheet" href="{% static 'app/css/bootstrap.min.css' %}">
+	<script src="{% static 'app/js/jquery.js' %}"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+	<div class="container">
+		<h2 class="py-3 text-center">Bootstrap Tab Plugin</h2>
+		<div class="row py-3 justify-content-center">
+
+		<div class="row">
+			<div class="col-md-3">
+				<ul class="nav nav-pills flex-column" id="vertical-tab">
+					<li class="nav-item">
+						<a class="nav-link active" data-toggle="pill" href="#profile">Profile</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" data-toggle="pill" href="#orders">Orders</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" data-toggle="pill" href="#address">Address</a>
+					</li>
+				</ul>
+			</div>
+			<div class="col-md-9">
+				<div class="tab-content py-3" id="vertical-tabcontent">
+					<div class="tab-pane fade show active"  id="profile">
+						Home Lorem, ipsum dolor sit amet consectetur adipisicing elit. Amet dolor optio error asperiores sapiente aspernatur repellendus officiis architecto, tempora hic?
+					</div>
+					<div class="tab-pane fade"  id="orders">
+						Profile Lorem, ipsum dolor sit amet consectetur adipisicing elit. Amet dolor optio error asperiores sapiente aspernatur repellendus officiis architecto, tempora hic?
+					</div>
+					<div class="tab-pane fade"  id="address">
+						Contact Lorem, ipsum dolor sit amet consectetur adipisicing elit. Amet dolor optio error asperiores sapiente aspernatur repellendus officiis architecto, tempora hic?
+					</div>
+				</div>
+			</div>
+		</div>	
+	</div>
+
+	<script src="{% static 'app/js/jquery.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table, th, td {
+            border: 1px solid rgb(81, 98, 114);
+            border-collapse: collapse;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <h3>All Song Data</h3>
+        <thead>
+            <tr>
+                <th>Written By</th>
+                <th>Song Name</th>
+                <th>Song Duration</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in data1 %}
+                <tr>
+                    <td>{{auth_user.username}}</td>
+                    <td>{{p.song_name}}</td>
+                    <td>{{p.song_duration}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <table>
+        <h3>Song Filtered by Song Duration</h3>
+        <thead>
+            <tr>
+                <th>Written By</th>
+                <th>Song Name</th>
+                <th>Song Duration</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in data2 %}
+                <tr>
+                    <td>{{p.user}}</td>
+                    <td>{{p.song_name}}</td>
+                    <td>{{p.song_duration}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <table>
+        <h3>Song Filtered by Username</h3>
+        <thead>
+            <tr>
+                <th>Written By</th>
+                <th>Song Name</th>
+                <th>Song Duration</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in data3 %}
+                <tr>
+                    <td>{{p.user}}</td>
+                    <td>{{p.song_name}}</td>
+                    <td>{{p.song_duration}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

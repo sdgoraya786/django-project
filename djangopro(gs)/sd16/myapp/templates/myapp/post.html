@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table, th, td {
+            border: 1px solid rgb(81, 98, 114);
+            border-collapse: collapse;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <h3>All Post Data</h3>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Post Title</th>
+                <th>Post Cat.</th>
+                <th>Publish Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in data1 %}
+                <tr>
+                    <td>{{p.user}}</td>
+                    <td>{{p.post_title}}</td>
+                    <td>{{p.post_cat}}</td>
+                    <td>{{p.post_publish_date}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <table>
+        <h3>Post Filtered by Post Publish Date</h3>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Post Title</th>
+                <th>Post Cat.</th>
+                <th>Publish Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in data2 %}
+                <tr>
+                    <td>{{p.user}}</td>
+                    <td>{{p.post_title}}</td>
+                    <td>{{p.post_cat}}</td>
+                    <td>{{p.post_publish_date}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <table>
+        <h3>Post Filtered by Username</h3>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Post Title</th>
+                <th>Post Cat.</th>
+                <th>Publish Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in data3 %}
+                <tr>
+                    <td>{{p.user}}</td>
+                    <td>{{p.post_title}}</td>
+                    <td>{{p.post_cat}}</td>
+                    <td>{{p.post_publish_date}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

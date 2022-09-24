@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .errorlist{
+            list-style-type: none;
+            color: #ef2020;
+            font-size: 15px;
+            margin: 0;
+            padding: 0;
+        }
+        #id_agree{
+            float: left;
+            margin: 2px 10px 2px 48px;
+        }
+    </style>
+</head>
+<body>
+<!-- """ ///// Get Form Data and Validate Data 56 //// Form Fields 58 ////// 59,60,61,62 """ -->
+    <!-- <form action="" method="POST" novalidate>
+       {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Submit">
+    </form> -->
+
+    <!--  -->
+    <!-- """ ///// Styling Django Form Errors and Field Error 63 ////// """ -->
+    <!-- <form action="" method="POST" novalidate>
+        {% csrf_token %}
+        {{form.non_field_errrors}}
+        {% for field in form %} -->
+            <!--### ex 1 for error msg - if one error in one field -->
+            <!--# <div>{{field.label_tag}}{{field}} {{field.errors}}</div><br> -->
+
+            <!--### ex 2 for error msg - if one error in one field -->
+            <!--# <div>{{field.label_tag}}{{field}} <span class="errorlist">{{field.errors|striptags}}</span></div><br> -->
+            
+            <!--### ex 3 for error msg - if more then one error in one field -->
+            <!-- <div>
+                {{field.label_tag}}{{field}}
+                {% for error in field.errors %}
+                    <span class="errorlist">{{error}}</span>
+                {% endfor %}
+            </div><br> 
+        {% endfor %}
+         <input type="submit" value="Submit">
+     </form> -->
+
+     <!--  -->
+    <!-- """ ///// Form Class Hook error_css_class and required_css_clss 63,64 ////// """ -->
+    <form action="" method="POST" novalidate>
+        {% csrf_token %}
+        <table>{{form}}</table>
+        <input type="submit" value="Submit">
+     </form>
+</body>
+</html>

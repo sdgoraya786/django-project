@@ -1,0 +1,48 @@
+{% extends "blog/base.html" %}
+
+{% block title %}
+    User Registrations | SD Goraya
+{% endblock title %}
+
+{% block content %}
+    <div class="col-md-10 offset-md-1">
+        <h3 class="text-secondary border border-secondary text-center py-3 mt-5 mb-4">SIGN UP USER</h3>
+        <p>First, enter a username and password. Then, you’ll be able to edit more information.</p>
+        
+        <form action="" method="post" novalidate>
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                    <span class="errornote">{{error}}</span>
+                {% endfor %}
+            {% endif %}
+
+            {% for fm in form %}
+                <div class="form-group border-bottom border-secondary mb-4 pb-3">
+                    {{fm.label_tag}}
+                    {{fm}} <br>
+                    {% if fm.errors %}
+                        {% for error in fm.errors %}
+                            <span class="errorlist text-warning">{{error}}</span><br>
+                        {% endfor %}
+                    {% endif %}
+                    <small id="helptext" class="">{{fm.help_text|safe}}</small>
+                </div>
+                <!-- <hr> -->
+            {% endfor %}
+            <input type="submit" class="btn btn-secondary" value="Sign Up">
+        </form>
+    </div>
+
+    
+{% endblock content %}
+
+
+
+
+<div class="alert alert-primary alert-dismissible fade show" role="alert">
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+    <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+</div>
