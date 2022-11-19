@@ -1,0 +1,22 @@
+from .models import Singer, Song
+from rest_framework import serializers
+
+class SongSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Song
+        fields = '__all__'
+
+class SingerSerializer(serializers.ModelSerializer):
+    song = serializers.StringRelatedField(many=True)
+    # song = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    # song = serializers.HyperlinkedRelatedField(many=True, read_only=True, view_name='song-detail')
+    # song = serializers.SlugRelatedField(many=True, read_only=True, slug_field='title')
+    ## use in Hyperlinked Model Serializer in next project
+    # song = serializers.HyperlinkedIdentityField(view_name='song-detail')
+
+    # Nested Serializer 34
+    # song = SongSerializer(many=True, read_only=True)
+    class Meta:
+        model = Singer
+        # 'song' - in models ForeignKey Singer related_name
+        fields = ['id','name','gender','song']
